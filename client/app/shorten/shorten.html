@@ -8,8 +8,10 @@
   </button>
   <form ng-submit="addLink()">
     <label for="url">URL</label>
-    <input id="url" ng-model="link.url" ng-change="isValidUrl(link.url)">
+    <input id="url" ng-model="link.url" ng-change="validate(link.url)">
     <button type="submit">Submit</button>
    </form>
-   <div ng-hide="validUrl">Not a valid URL</div>
+   <div ng-repeat="fail in failed">
+    {{ fail }}
+   </div>
 </div>
