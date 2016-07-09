@@ -71,4 +71,31 @@ angular.module('shortly.services', [])
     isAuth: isAuth,
     signout: signout
   };
+})
+.factory('Validation', function() {
+  var validations = {
+    username: [
+        {desc: 'Username not between 8-20 characters.', regex: /^(?=.{8,20}$)[a-zA-Z0-9._]+$/}, 
+        {desc: 'Username contains invalid character.', regex: /^(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?![_.])$/}
+    ],
+    url: [
+        {desc: 'Invalid url', regex: /^(?!mailto:)(?:(?:https?|ftp):\/\/)?(?:\S+(?::\S*)?@)?(?:(?:(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[0-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))|localhost)(?::\d{2,5})?(?:\/[^\s]*)?$/i}
+    ],
+    password: [
+        {desc: 'Password not between 8-20 characters.', regex: /^(?=.{8,20}$)[a-zA-Z0-9._]+$/},
+        {desc: 'Password does not contain a capital letter.', regex: /^(?=.*[A-Z]).+$/}
+    ]
+  };
+  var validate = function(string, type) {
+    var failed = [];
+    validations[type].forEach(function(validation) {
+      if (!string.match(validation.regex)) {
+        failed.push(validation.desc);
+      }
+    });
+    return failed;
+  };
+  return {
+    validate: validate
+  };
 });
