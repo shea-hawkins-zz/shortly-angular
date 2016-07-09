@@ -1,9 +1,15 @@
 <div id='container'>
 <!-- Your code here -->
   <button>
-    <a href="#/shorten">Shorten</a>
-  </button>
-  <button>
     <a href="#/links">Links</a>
   </button>
+  <button>
+    <a href="#/shorten">Shorten</a>
+  </button>
+  <form ng-submit="addLink()">
+    <label for="url">URL</label>
+    <input id="url" ng-model="link.url" ng-change="isValidUrl(link.url)">
+    <button type="submit">Submit</button>
+   </form>
+   <div ng-hide="validUrl">Not a valid URL</div>
 </div>
