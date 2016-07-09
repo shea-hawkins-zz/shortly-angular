@@ -5,6 +5,9 @@
   <button>
     <a href="#/shorten">Shorten</a>
   </button>
-  <!-- Your html here -->
-  <!-- Render all links -->
+  <input ng-model='criteria'>
+  <div ng-repeat="link in data.links | orderBy:'-visits' | filter:criteria">
+    <a ng-href="{{ link.baseUrl + '/' + link.code }}">{{ link.title }}</a>
+    <div>{{ link.visits }}</div>
+  </div>
 </div>
