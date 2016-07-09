@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 // is just a function passed to `app.use`. Any function passed into `app.use`
 // will get run on every single request that your server receives
 
-// The order of middleware is defined matters quite a bit! Requests flow through
+// The order middleware is defined matters quite a bit! Requests flow through
 // middleware functions in the order they are defined. This is useful because
 // many times  middleware function is responsible for modifying the `request`
 // object in some way so that the next middleware function (or route handler)
